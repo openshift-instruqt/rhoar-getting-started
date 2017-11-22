@@ -1,0 +1,7 @@
+name: Vert.x HTTP Booster
+description: Runs a Vert.x HTTP application
+versions:
+  - id: community
+    name: 3.4.2.Final (Community)
+  - id: redhat
+    name: 3.4.2.redhat-006 (RHOAR)
