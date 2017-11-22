@@ -13,27 +13,22 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+package com.example;
 
-package io.openshift.boosters;
+public class Greeting {
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+    private final String content;
 
-import org.wildfly.swarm.health.Health;
-import org.wildfly.swarm.health.HealthStatus;
-
-@Path("/service")
-public class HealthChecks {
-
-    @GET
-    @Health
-    @Path("/health")
-    public HealthStatus check() {
-
-        if (ApplicationConfig.IS_ALIVE.get()) {
-            return HealthStatus.named("server-state").up();
-        } else {
-            return HealthStatus.named("server-state").down();
-        }
+    public Greeting() {
+        this.content = null;
     }
+
+    public Greeting(String content) {
+        this.content = content;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
 }

@@ -18,7 +18,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.redhat.rhoar</groupId>
+    <groupId>com.example</groupId>
     <artifactId>getting-started-wildfly-swarm</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
@@ -71,10 +71,7 @@
             <artifactId>jaxrs</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.wildfly.swarm</groupId>
-            <artifactId>monitor</artifactId>
-        </dependency>
+        <!-- Add monitor fraction -->
 
         <dependency>
             <groupId>org.wildfly.swarm</groupId>
@@ -87,32 +84,6 @@
             <version>2.2.1.Final</version>
         </dependency>
     </dependencies>
-
-    <repositories>
-        <repository>
-            <id>redhat-early-access</id>
-            <name>Red Hat Early Access Repository</name>
-            <url>https://maven.repository.redhat.com/earlyaccess/all/</url>
-        </repository>
-        <repository>
-            <id>redhat-ga</id>
-            <name>Red Hat GA Repository</name>
-            <url>https://maven.repository.redhat.com/ga/</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>redhat-early-access</id>
-            <name>Red Hat Early Access Repository</name>
-            <url>https://maven.repository.redhat.com/earlyaccess/all/</url>
-        </pluginRepository>
-        <pluginRepository>
-            <id>redhat-ga</id>
-            <name>Red Hat GA Repository</name>
-            <url>https://maven.repository.redhat.com/ga/</url>
-        </pluginRepository>
-    </pluginRepositories>
-
 
     <build>
         <plugins>
@@ -162,9 +133,6 @@
                                 <includes>
                                     <include>wildfly-swarm</include>
                                 </includes>
-                                <excludes>
-                                    <exclude>webapp</exclude>
-                                </excludes>
                             </generator>
                         </configuration>
                     </plugin>

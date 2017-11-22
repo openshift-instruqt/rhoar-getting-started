@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package io.openshift.boosters;
+package com.example;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -34,22 +34,6 @@ public class GreetingResource {
         return new Greeting(String.format(template, suffix));
     }
 
-    /**
-     * The /stop operation is actually just going to suspend the server inbound traffic,
-     * which leads to 503 when subsequent HTTP requests are received
-     */
-    @GET
-    @Path("/stop")
-    public Response stop() {
-
-        if (!ApplicationConfig.IS_ALIVE.get()) {
-            throw new WebApplicationException(Response.Status.SERVICE_UNAVAILABLE);
-        }
-
-        ApplicationConfig.IS_ALIVE.set(false);
-        return Response.ok("killed").build();
-
-
-    }
+    // Add stop endpoint
 
 }
