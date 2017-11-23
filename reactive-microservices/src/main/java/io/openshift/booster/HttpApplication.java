@@ -17,17 +17,15 @@ public class HttpApplication extends AbstractVerticle {
   public void start(Future<Void> future) {
     
     // TODO: Create a router object
-    // Router router = Router.router(vertx);
+    
 
     // TODO: Add router for /api/greeting here
     // router.get("/api/greeting").handler(this::greeting);
     
     // TODO: Add a StaticHandler for accepting incoming requests
-    // router.get("/*").handler(StaticHandler.create());
-
+    
     // TODO: Create the HTTP server listening on port 8080 and pass the "accept" method to the request handler.
-    // vertx.createHttpServer().requestHandler(router::accept);
-
+    
     System.out.println("THE HTTP APPLICATION HAS STARTED");
   }
 
