@@ -22,7 +22,7 @@ public class HttpApplication extends AbstractVerticle {
     
     // TODO: Add a StaticHandler for accepting incoming requests
     
-    // TODO: Create the HTTP server listening on port 8080 and pass the "accept" method to the request handler.
+    // TODO: Create the HTTP server listening on port 8080
     
     System.out.println("THE HTTP APPLICATION HAS STARTED");
   }
