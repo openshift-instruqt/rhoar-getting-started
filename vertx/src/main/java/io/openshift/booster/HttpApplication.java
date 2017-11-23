@@ -15,38 +15,19 @@ public class HttpApplication extends AbstractVerticle {
 
   @Override
   public void start(Future<Void> future) {
-    // Create a router object.
-    Router router = Router.router(vertx);
-
-    router.get("/api/greeting").handler(this::greeting);
-    router.get("/*").handler(StaticHandler.create());
-
-    // Create the HTTP server and pass the "accept" method to the request handler.
-    vertx
-        .createHttpServer()
-        .requestHandler(router::accept)
-        .listen(
-            // Retrieve the port from the configuration, default to 8080.
-            config().getInteger("http.port", 8080), ar -> {
-              if (ar.succeeded()) {
-                System.out.println("Server started on port " + ar.result().actualPort());
-              }
-              future.handle(ar.mapEmpty());
-            });
-
+    
+    // TODO: Create a router object
+    
+    // TODO: Add router for /api/greeting here
+    
+    // TODO: Add a StaticHandler for accepting incoming requests
+    
+    // TODO: Create the HTTP server listening on port 8080 and pass the "accept" method to the request handler.
+    
+    System.out.println("THE HTTP APPLICATION HAS STARTED");
   }
 
-  private void greeting(RoutingContext rc) {
-    String name = rc.request().getParam("name");
-    if (name == null) {
-      name = "World";
-    }
+  // TODO: Add method for greeting here
 
-    JsonObject response = new JsonObject()
-        .put("content", String.format(template, name));
-
-    rc.response()
-        .putHeader(CONTENT_TYPE, "application/json; charset=utf-8")
-        .end(response.encodePrettily());
-  }
+  
 }
