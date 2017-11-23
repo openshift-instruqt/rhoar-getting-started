@@ -2,13 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <!--   
   <parent>
     <groupId>io.openshift</groupId>
     <artifactId>booster-parent</artifactId>
     <version>13</version>
-  </parent> 
-  -->
+  </parent>
   <groupId>io.openshift.booster</groupId>
   <artifactId>http-vertx</artifactId>
   <version>8-SNAPSHOT</version>
@@ -18,23 +16,9 @@
   <description>Exposes an HTTP API using Vert.x</description>
 
   <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    
-    <maven.min.version>3.3.9</maven.min.version>
-    <jdk.min.version>${maven.compiler.source}</jdk.min.version>
-
-
     <vertx.version>3.4.2.redhat-5</vertx.version>
     <vertx-maven-plugin.version>1.0.13</vertx-maven-plugin.version>
     <vertx.verticle>io.openshift.booster.HttpApplication</vertx.verticle>
-
-    <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
-    <fabric8-maven-plugin.version>3.5.30</fabric8-maven-plugin.version>
-    
-    <fabric8.generator.from>registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift</fabric8.generator.from>
   </properties>
 
   <dependencyManagement>
@@ -88,16 +72,30 @@
       <version>3.0.5</version>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>org.jboss.arquillian.junit</groupId>
+      <artifactId>arquillian-junit-container</artifactId>
+      <version>1.1.12.Final</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.arquillian.cube</groupId>
+      <artifactId>arquillian-cube-openshift</artifactId>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>undertow-core</artifactId>
+          <groupId>io.undertow</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
   </dependencies>
 
 
   <build>
     <plugins>
-      <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>${maven-compiler-plugin.version}</version>
-      </plugin>
       <plugin>
         <groupId>io.fabric8</groupId>
         <artifactId>vertx-maven-plugin</artifactId>

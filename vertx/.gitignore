@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Created by .ignore support plugin (hsz.mobi)
 ### JetBrains template
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
@@ -28,9 +27,6 @@ crashlytics-build.properties
 fabric.properties
 ### Java template
 *.class
-
-#### VSCode
-.vscode/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -114,23 +110,3 @@ nbactions.xml
 .nb-gradle/
 
 *.log
-=======
-*.zip
-target/
-out/
-.DS_Store
-*.classpath
-*.project
-*.settings
-.security/
-generated/
-*.jar
-*.war
-*.iml
-.idea
-workspace
-data
-logs/
-tmp/
-.vscode/
->>>>>>> 2f34cf421dbbffd263d167d87fb7cb649008db98
