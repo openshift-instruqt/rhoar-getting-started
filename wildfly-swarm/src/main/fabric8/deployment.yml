@@ -2,26 +2,6 @@ spec:
   template:
     spec:
       containers:
-        - readinessProbe:
-            httpGet:
-              path: /health
-              port: 8080
-              scheme: HTTP
-            failureThreshold: 3
-            initialDelaySeconds: 10
-            periodSeconds: 5
-            successThreshold: 1
-            timeoutSeconds: 1
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 8080
-              scheme: HTTP
-            failureThreshold: 2
-            initialDelaySeconds: 20
-            periodSeconds: 3
-            successThreshold: 1
-            timeoutSeconds: 1
-          env:
+        - env:
            - name: JAVA_OPTIONS
              value: "-Djava.net.preferIPv4Stack=true"

@@ -83,6 +83,8 @@
         var n = $("#name").val() || "World";
         $.getJSON("/api/greeting?name=" + n, function (res) {
             $("#greeting-result").html(JSON.stringify(res));
+        }).fail(function(err) {
+            $("#greeting-result").html(JSON.stringify(err));
         });
     }
 
