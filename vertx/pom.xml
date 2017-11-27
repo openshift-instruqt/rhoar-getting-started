@@ -2,16 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <!--   
-  <parent>
-    <groupId>io.openshift</groupId>
-    <artifactId>booster-parent</artifactId>
-    <version>13</version>
-  </parent> 
-  -->
+
   <groupId>io.openshift.booster</groupId>
   <artifactId>http-vertx</artifactId>
-  <version>8-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>Vert.x - HTTP</name>
@@ -27,13 +21,13 @@
     <jdk.min.version>${maven.compiler.source}</jdk.min.version>
 
 
-    <vertx.version>3.4.2.redhat-5</vertx.version>
+    <vertx.version>3.4.2.redhat-006</vertx.version>
     <vertx-maven-plugin.version>1.0.13</vertx-maven-plugin.version>
     <vertx.verticle>io.openshift.booster.HttpApplication</vertx.verticle>
 
     <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
     <fabric8-maven-plugin.version>3.5.30</fabric8-maven-plugin.version>
-    
+
     <fabric8.generator.from>registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift</fabric8.generator.from>
   </properties>
 
