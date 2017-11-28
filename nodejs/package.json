@@ -1,0 +1,60 @@
+{
+  "name": "nodejs-configmap",
+  "description": "This project demonstrates application and runtime configuration leveraging external configuration sources",
+  "version": "1.0.0",
+  "author": "Red Hat, Inc.",
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "tape test/*.js | tap-spec",
+    "lint": "eslint test/*.js app.js bin/*",
+    "prepare": "nsp check",
+    "coverage": "nyc npm test",
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "ci": "npm run lint && npm run coveralls",
+    "dependencyCheck": "szero . --ci",
+    "release": "standard-version",
+    "openshift": "nodeshift --osc.strictSSL=false",
+    "start": "PORT=8080 node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rhoar-getting-started/nodejs.git"
+  },
+  "files": [
+    "package.json",
+    "app.js",
+    "public",
+    "bin",
+    "LICENSE"
+  ],
+  "bugs": {
+    "url": "https://developers.redhat.com"
+  },
+  "homepage": "https://developers.redhat.com/rhoar",
+  "devDependencies": {
+    "coveralls": "^2.13.1",
+    "eslint": "~4.5.0",
+    "eslint-config-semistandard": "~11.0.0",
+    "eslint-config-standard": "~10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "~3.5.0",
+    "eslint-plugin-react": "~7.3.0",
+    "eslint-plugin-standard": "~3.0.1",
+    "nodeshift": "^0.8.1",
+    "nsp": "~2.7.0",
+    "nyc": "~11.1.0",
+    "standard-version": "^4.2.0",
+    "supertest": "^3.0.0",
+    "szero": "^1.0.0",
+    "tap-spec": "~4.1.1",
+    "tape": "~4.8.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "debug": "^3.1.0",
+    "express": "^4.16.0",
+    "js-yaml": "^3.10.0",
+    "kube-probe": "^0.1.2"
+  }
+}
