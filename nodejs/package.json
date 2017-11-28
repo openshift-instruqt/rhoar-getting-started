@@ -13,7 +13,7 @@
     "ci": "npm run lint && npm run coveralls",
     "dependencyCheck": "szero . --ci",
     "release": "standard-version",
-    "openshift": "nodeshift --osc.strictSSL=false",
+    "openshift": "nodeshift --osc.strictSSL=false --osl.tryServiceAccount=false --configLocation /openshift.local.config/master/admin.kubeconfig",
     "start": "PORT=8080 node ./bin/www"
   },
   "repository": {
