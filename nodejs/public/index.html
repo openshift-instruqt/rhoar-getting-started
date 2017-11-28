@@ -1,0 +1,65 @@
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Getting Started with Node.js on RHOAR</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div>
+            <h1>Getting Started with Node.js on RHOAR</h1>
+            <p class="lead">This sample showcases application configuration, using OpenShift <em>configmaps</em>. It demonstrates application and runtime configuration leveraging external configuration sources. Alongside the basic means to set up a <em>configmap</em>                and use with a specific runtime, this booster also demonstrates how changes to the configuration can be applied to services already deployed in OpenShift.
+            </p>
+
+            <h2>Using the greeting service</h2>
+
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="World">
+                </div>
+                <button id="invoke" type="submit" class="btn btn-success">Invoke</button>
+            </form>
+
+            <h3>Result:</h3>
+            <pre><code id="greeting-result">Invoke the service to see the result.</code></pre>
+
+            <p class="lead">
+                Once you have invoked the <em>greeting</em> service, you can reconfigure it:
+            </p>
+            <ol>
+                <li>Run <code>oc edit configmap app-config</code></li>
+                <li>Change the <code>message</code> entry to <code>Bonjour, %s from Kubernetes ConfigMap !</code></li>
+                <li>Save</li>
+            </ol>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#invoke").click(function(e) {
+                var n = $("#name").val() || "World";
+                $.getJSON("/api/greeting?name=" + n, function(res) {
+                        $("#greeting-result").html(JSON.stringify(res));
+                    })
+                    .fail(function(jqxhr, textStatus, error) {
+                        $("#greeting-result").html("Unable to read the configuration");
+                    });
+                e.preventDefault();
+            });
+        });
+    </script>
+
+</body>
+
+</html>

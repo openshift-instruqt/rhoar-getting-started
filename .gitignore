@@ -36,7 +36,6 @@ buildNumber.properties
 ### Eclipse template
 
 .metadata
-bin/
 tmp/
 *.tmp
 *.bak
@@ -114,3 +113,4 @@ data
 logs/
 tmp/
 .vscode/
+node_modules/
