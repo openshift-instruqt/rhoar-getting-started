@@ -120,6 +120,7 @@
           <plugin>
             <groupId>io.fabric8</groupId>
             <artifactId>fabric8-maven-plugin</artifactId>
+            <version>${version.wildfly.swarm}</version>
             <executions>
               <execution>
                 <id>fmp</id>
