@@ -3,6 +3,9 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const openshiftConfigLoader = require('openshift-config-loader');
+const openshiftRestClient = require('openshift-rest-client');
+const jsyaml = require('js-yaml');
 
 const app = express();
 
@@ -17,7 +20,6 @@ let configMap;
 let message = "Default hard-coded greeting: Hello, %s!";
 
 app.use('/api/greeting', (request, response) => {
-  console.log("request query: " + JSON.stringify(request.query));
   const name = (request.query && request.query.name) ? request.query.name : 'World';
   return response.send({content: message.replace(/%s/g, name)});
 });
