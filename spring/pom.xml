@@ -61,7 +61,7 @@
 
     <!-- TODO: Add JPA dependency here -->
   
-    <!-- TODO: ADD Actuator dependecy here -->
+    <!-- TODO: ADD Actuator dependency here -->
     
     <!-- Testing -->
     <dependency>
