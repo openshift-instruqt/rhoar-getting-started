@@ -100,7 +100,7 @@
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
-      <!-- TODO: ADD H2 database dependecy here -->
+      <!-- TODO: ADD H2 database dependency here -->
     </profile>
     <profile>
       <id>openshift</id>
