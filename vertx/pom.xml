@@ -135,7 +135,11 @@
                 <excludes>
                   <exclude>f8-maven-scm</exclude>
                 </excludes>
-                <!-- ADD HEALTH CHECK HERE -->
+                <config>
+                  <vertx-health-check>
+                    <path>/</path>
+                  </vertx-health-check>
+                </config>
               </enricher>
             </configuration>
           </plugin>
