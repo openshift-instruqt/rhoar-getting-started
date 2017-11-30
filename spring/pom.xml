@@ -18,11 +18,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>io.openshift.booster</groupId>
-  <artifactId>spring-boot-rest-http-crud</artifactId>
+  <groupId>com.example</groupId>
+  <artifactId>fruits</artifactId>
   <version>15-SNAPSHOT</version>
 
-  <name>Spring Boot - CRUD Booster</name>
+  <name>Simple Fruits Application</name>
   <description>Spring Boot - CRUD Booster</description>
 
   <properties>
