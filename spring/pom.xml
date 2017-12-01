@@ -34,7 +34,7 @@
     <maven.min.version>3.3.9</maven.min.version>
     <postgresql.version>9.4.1212</postgresql.version>
     <spring-boot.version>1.5.8.RELEASE</spring-boot.version>
-    <spring-boot.bom.version>1.5.8.Final</spring-boot.bom.version>
+    <spring-boot.bom.version>1.5.8.Final-redhat-1</spring-boot.bom.version>
     <maven-surefire-plugin.version>2.20</maven-surefire-plugin.version>
     <fabric8-maven-plugin.version>3.5.30</fabric8-maven-plugin.version>
   </properties>
