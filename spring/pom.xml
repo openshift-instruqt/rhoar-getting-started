@@ -38,7 +38,7 @@
     <maven-surefire-plugin.version>2.20</maven-surefire-plugin.version>
     <fabric8-maven-plugin.version>3.5.30</fabric8-maven-plugin.version>
   </properties>
-  
+
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -100,7 +100,9 @@
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
-      <!-- TODO: ADD H2 database dependency here -->
+      <dependencies>
+        <!-- TODO: ADD H2 database dependency here -->
+      </dependencies>
     </profile>
     <profile>
       <id>openshift</id>
