@@ -14,7 +14,7 @@ public class HttpApplication extends AbstractVerticle {
   static final String template = "Hello, %s!";
 
   @Override
-  public void start(Future<Void> future) {
+  public void start() {
     
     // TODO: Create a router object
     
