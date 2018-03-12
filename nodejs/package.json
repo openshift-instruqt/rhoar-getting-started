@@ -7,8 +7,6 @@
   "scripts": {
     "test": "tape test/*.js | tap-spec",
     "lint": "eslint test/*.js app.js bin/*",
-    "prepare": "echo 'To confirm CVE compliance, run \"npm run security-check\"' ",
-    "security-check": "nsp check",
     "coverage": "nyc npm test",
     "coverage:html": "nyc npm test && nyc report --reporter=html",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
@@ -42,7 +40,7 @@
     "eslint-plugin-promise": "~3.6.0",
     "eslint-plugin-react": "~7.7.0",
     "eslint-plugin-standard": "~3.0.1",
-    "nodeshift": "^1.4.1",
+    "nodeshift": "^0.16.0",
     "nsp": "~3.2.1",
     "nyc": "~11.4.1",
     "standard-version": "^4.3.0",
