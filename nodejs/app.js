@@ -3,8 +3,6 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const openshiftConfigLoader = require('openshift-config-loader');
-const openshiftRestClient = require('openshift-rest-client');
 const jsyaml = require('js-yaml');
 
 const app = express();
