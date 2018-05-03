@@ -21,12 +21,12 @@
     <jdk.min.version>${maven.compiler.source}</jdk.min.version>
 
 
-    <vertx.version>3.4.2.redhat-006</vertx.version>
+    <vertx.version>3.5.1.redhat-003</vertx.version>
     <vertx-maven-plugin.version>1.0.13</vertx-maven-plugin.version>
     <vertx.verticle>com.example.HttpApplication</vertx.verticle>
 
     <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
-    <fabric8-maven-plugin.version>3.5.30</fabric8-maven-plugin.version>
+    <fabric8-maven-plugin.version>3.5.38</fabric8-maven-plugin.version>
 
     <fabric8.generator.from>registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift</fabric8.generator.from>
   </properties>
