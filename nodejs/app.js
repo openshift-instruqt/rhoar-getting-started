@@ -3,8 +3,6 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const openshiftConfigLoader = require('openshift-config-loader');
-const openshiftRestClient = require('openshift-rest-client');
 const jsyaml = require('js-yaml');
 
 const app = express();
@@ -27,8 +25,37 @@ app.use('/api/greeting', (request, response) => {
 // set health check
 probe(app);
 
-// TODO: Periodic check for config map update
+setInterval(() => {
+  retrieveConfigMap().then((config) => {
+  if (!config) {
+  message = null;
+  return;
+}
 
-// TODO: Retrieve ConfigMap
+if (JSON.stringify(config) !== JSON.stringify(configMap)) {
+  configMap = config;
+  message = config.message;
+}
+}).catch((err) => {
+
+});
+}, 2000);
+
+// Find the Config Map
+const openshiftRestClient = require('openshift-rest-client');
+function retrieveConfigMap() {
+  const settings = {
+    request: {
+      strictSSL: false
+    }
+  };
+
+  return openshiftRestClient(settings).then((client) => {
+    const configMapName = 'app-config';
+  return client.configmaps.find(configMapName).then((configMap) => {
+    return jsyaml.safeLoad(configMap.data['app-config.yml']);
+});
+});
+}
 
 module.exports = app;
