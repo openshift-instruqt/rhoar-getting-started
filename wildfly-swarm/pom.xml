@@ -34,7 +34,7 @@
         <maven.min.version>3.3.9</maven.min.version>
         <jdk.min.version>${maven.compiler.source}</jdk.min.version>
 
-        <version.wildfly.swarm>7.0.1.redhat-20</version.wildfly.swarm>
+        <version.wildfly.swarm>7.1.0.redhat-77</version.wildfly.swarm>
         <version.resteasy>3.0.24.Final</version.resteasy>
         <version.override.jackson>2.7.7</version.override.jackson>
         <failOnMissingWebXml>false</failOnMissingWebXml>
