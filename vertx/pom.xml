@@ -21,8 +21,8 @@
     <jdk.min.version>${maven.compiler.source}</jdk.min.version>
 
 
-    <vertx.version>3.5.1.redhat-003</vertx.version>
-    <vertx-maven-plugin.version>1.0.13</vertx-maven-plugin.version>
+    <vertx.version>3.5.1.redhat-004</vertx.version>
+    <vertx-maven-plugin.version>1.0.15</vertx-maven-plugin.version>
     <vertx.verticle>com.example.HttpApplication</vertx.verticle>
 
     <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
