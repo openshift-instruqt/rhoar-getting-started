@@ -93,7 +93,7 @@
           <version>${maven-compiler-plugin.version}</version>
       </plugin>
       <plugin>
-        <groupId>io.fabric8</groupId>
+        <groupId>io.reactiverse</groupId>
         <artifactId>vertx-maven-plugin</artifactId>
         <version>${vertx-maven-plugin.version}</version>
         <executions>
