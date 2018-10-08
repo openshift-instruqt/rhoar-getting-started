@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: amq-pv
+spec:
+  accessModes:
+  - ReadWriteMany
+  capacity:
+    storage: 1Gi
+  hostPath:
+    path: /root/code/amq
+  persistentVolumeReclaimPolicy: Retain

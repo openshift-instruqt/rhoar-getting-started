@@ -1,0 +1,16 @@
+# IntelliJ
+.idea
+*.iml
+target
+
+# Eclipse
+.metadata
+.settings
+.classpath
+.project
+bin
+tmp
+
+# OS generated files #
+######################
+.DS_Store?

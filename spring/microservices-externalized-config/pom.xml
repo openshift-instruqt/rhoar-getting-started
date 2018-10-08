@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright 2016-2017 Red Hat, Inc, and individual contributors.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>io.openshift.booster</groupId>
+    <artifactId>spring-boot-booster-parent</artifactId>
+    <version>1.5.10-15</version>
+  </parent>
+
+  <artifactId>booster-configmap-spring-boot</artifactId>
+
+  <groupId>io.openshift.booster</groupId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>Spring Boot - ConfigMap Booster</name>
+  <description>Spring Boot - ConfigMap Booster</description>
+
+  
+
+  <profiles>
+    <profile>
+      <id>licenses</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>license-maven-plugin</artifactId>
+            <inherited>false</inherited>
+            <configuration>
+              <excludedArtifacts>spring-boot-configmap</excludedArtifacts>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>xml-maven-plugin</artifactId>
+            <inherited>false</inherited>
+          </plugin>
+        </plugins>
+      </build>
+      <activation />
+    </profile>
+  </profiles>
+
+  <modules>
+    <module>greeting-service</module>
+    <!-- <module>tests</module> -->
+  </modules>
+</project>

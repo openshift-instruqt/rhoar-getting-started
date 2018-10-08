@@ -1,0 +1,8 @@
+hystrix:
+  command:
+    default:
+      circuitBreaker:
+        requestVolumeThreshold: 3
+      metrics:
+        healthSnapshot:
+          intervalInMilliseconds: 100
