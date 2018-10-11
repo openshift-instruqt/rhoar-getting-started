@@ -39,7 +39,6 @@
   <modules>
     <module>fruit-service</module>
     <module>name-service</module>
-    <!-- <module>tests</module> -->
   </modules>
 
   <dependencyManagement>
@@ -52,27 +51,4 @@
     </dependencies>
   </dependencyManagement>
 
-  <profiles>
-    <profile>
-      <id>licenses</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>license-maven-plugin</artifactId>
-            <inherited>false</inherited>
-            <configuration>
-              <excludedArtifacts>spring-boot-circuit-breaker</excludedArtifacts>
-            </configuration>
-          </plugin>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>xml-maven-plugin</artifactId>
-            <inherited>false</inherited>
-          </plugin>
-        </plugins>
-      </build>
-      <activation />
-    </profile>
-  </profiles>
 </project>
