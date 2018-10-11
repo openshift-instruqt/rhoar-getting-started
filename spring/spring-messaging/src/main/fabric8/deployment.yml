@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: ${project.artifactId}
+spec:
+  template:
+    spec:
+      serviceAccount: amq-service-account
+      serviceAccountName: amq-service-account
+      containers:
+        - env:
+          - name: AMQP_HOST
+            value: broker-amq-amqp
+          - name: SPRING_APPLICATION_JSON
+            value: '{"server":{"undertow":{"io-threads":1, "worker-threads":2 }}}'

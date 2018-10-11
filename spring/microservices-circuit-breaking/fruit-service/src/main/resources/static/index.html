@@ -1,0 +1,187 @@
+<!--
+  ~
+  ~  Copyright 2016-2017 Red Hat, Inc, and individual contributors.
+  ~
+  ~  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  you may not use this file except in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~
+  ~  http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  See the License for the specific language governing permissions and
+  ~  limitations under the License.
+  ~
+  -->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Circuit Breaker Mission - Spring Boot</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div>
+        <h1>Circuit Breaker Mission - Spring Boot</h1>
+        <p class="lead">
+            Cloud applications are often comprised of many services. And between those services there often can be many interactions.
+            But even if some of those services fail or are unavailable, we may want to offer an alternative response to an error condition,
+            that it does not increase load on service in, which is unavailable because of high load. And to achieve this, we need a generic
+            mechanism over the failed or unavailable service to service communication, which can quickly and easily determine that the services
+            are not functioning properly, hence can either return a default result or fail quickly and gracefully with enough information about
+            the current failure. This mechanism is called circuit breaker.
+        </p>
+        <p>
+            On this page you can invoke the <code>greeting service</code>. This service uses a <code>name
+            service</code>. The invocations are protected by a circuit breaker. You can configure the state of the
+            <code>name service</code> using the <code>toggle</code> button.
+        </p>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <h2>Greeting service</h2>
+                <div id="circuit-state"></div>
+                <button id="invoke" type="submit" class="btn btn-primary">Invoke</button>
+                <h3>Results:</h3>
+                <form class="form-inline">
+                    <button id="clear" type="submit" class="btn btn-success">Clear</button>
+                </form>
+                <pre style="min-height:20em;"><code id="greeting-result"></code></pre>
+            </div>
+
+            <div class="col-md-6">
+                <h2>Name service</h2>
+                <div id="name-state"></div>
+                <form class="form-inline">
+                    <button id="toggle" type="submit" class="btn btn-primary">Toggle</button>
+                </form>
+                <h3>Requests:</h3>
+                <form class="form-inline">
+                    <button id="clear-requests" type="submit" class="btn btn-success">Clear</button>
+                </form>
+                <pre style="min-height:20em;"><code id="name-requests"></code></pre>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <script>
+        var currentLocation = window.location.origin;
+        var nameServiceUrlBase = currentLocation.indexOf("localhost") !== -1 ? "http://localhost:8081" : currentLocation.replace("greeting", "name");
+
+        function initCircuitState() {
+            $.getJSON("/api/cb-state", function(res) {
+                updateCircuitState(res.state === "open");
+            });
+        }
+
+        function initNameServiceState() {
+            $.getJSON(nameServiceUrlBase + "/api/info", function(res) {
+                updateNameServiceState(res.state === "ok");
+            });
+        }
+
+        function updateNameServiceState(state) {
+            if (state) {
+                $("#name-state").html("<h3>Operational state: <span class=\"label label-info\">OK</span></h3>");
+            } else {
+                $("#name-state").html("<h3>Operational state: <span class=\"label label-warning\">FAIL</span></h3>");
+            }
+        }
+
+        function updateCircuitState(isOpen) {
+            if (isOpen) {
+                $("#circuit-state").html("<h3>Circuit breaker state: <span class=\"label label-warning\">OPEN</span></h3>");
+            } else {
+                $("#circuit-state").html("<h3>Circuit breaker state: <span class=\"label label-info\">CLOSED</span></h3>");
+            }
+        }
+
+        $(document).ready(function() {
+
+            $("#invoke").click(function(e) {
+                $.getJSON("/api/greeting", function(res) {
+                    $("#greeting-result").prepend(JSON.stringify(res) + "\n");
+                });
+                e.preventDefault();
+            });
+
+            $("#toggle").click(function(e) {
+                var newState = $("#name-state").html().indexOf("FAIL") != -1 ? "ok" : "fail";
+                $.ajax({
+                    url: nameServiceUrlBase + "/api/state",
+                    type: 'PUT',
+                    headers: {"Content-Type" : "application/json"},
+                    data: JSON.stringify({state:newState}),
+                });
+                e.preventDefault();
+            });
+
+            $("#clear").click(function(e) {
+                $("#greeting-result").html("");
+                e.preventDefault();
+            });
+
+            $("#clear-requests").click(function(e) {
+                $("#name-requests").html("");
+                e.preventDefault();
+            });
+
+            initNameServiceState();
+            initCircuitState();
+
+            // WebSocket connections
+            var wsocket;
+            function connect() {
+                wsUrlBase = nameServiceUrlBase.replace("http://", "ws://");
+                wsocket = new WebSocket(wsUrlBase + "/name-ws");
+                wsocket.onmessage = onMessage;
+            }
+            function onMessage(evt) {
+                if (evt.data === "state:true") {
+                    updateNameServiceState(true);
+                } else if (evt.data === "state:false") {
+                    updateNameServiceState(false);
+                } else {
+                    // Request accepted
+                    $("#name-requests").prepend(evt.data + "\n");
+                }
+            }
+            window.addEventListener("load", connect, false);
+
+            var cbWsocket;
+            function cbConnect() {
+                cbWsUrlBase = window.location.origin.replace("http://", "ws://");
+                cbWsocket = new WebSocket(cbWsUrlBase + "/cb-ws");
+                cbWsocket.onmessage = cbOnMessage;
+            }
+            function cbOnMessage(evt) {
+                var isOpen = (evt.data === "isOpen:true");
+                updateCircuitState(isOpen);
+                console.log("Circuit breaker is open: " + isOpen);
+            }
+            window.addEventListener("load", cbConnect, false);
+
+        });
+    </script>
+</body>
+
+</html>
