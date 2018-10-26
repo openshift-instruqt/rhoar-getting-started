@@ -19,7 +19,7 @@
 <head>
 
   <meta charset="utf-8">
-  <title>Getting Started with RHOAR - WildFly Swarm</title>
+  <title>Getting Started with RHOAR - Thorntail</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -32,7 +32,7 @@
 
   <div>
     <div class="sect1">
-        <h2 id="_health_check_booster">Getting Started with RHOAR - WildFly Swarm</h2>
+        <h2 id="_health_check_booster">Getting Started with RHOAR - Thorntail</h2>
         <div class="sectionbody">
             <div class="paragraph">
                 <p>This sample app demonstrates how the Kubernetes health checks work to determine if a container is still alive (the <em>liveness</em>
@@ -40,8 +40,8 @@
                     of the container).</p>
             </div>
             <div class="paragraph">
-                <p>To demonstrate this behavior, the application configures a <code>/health</code> HTTP endpoint using WildFly Swarm's
-                    <code>@Health</code> annotation, which is used
+                <p>To demonstrate this behavior, the application configures a <code>/health</code> HTTP endpoint using the MicroProfile
+                    <code>@Health</code> annotation, which is then accessed
                     by Kubernetes to issue HTTP requests. If the container is still alive (meaning the Health HTTP endpoint
                     is able to reply) the management platform will receive HTTP code 200 as a response, and no further action
                     is taken. After you click the

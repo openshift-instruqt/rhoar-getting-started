@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
   ~ Copyright 2016-2017 Red Hat, Inc, and individual contributors.
   ~
   ~  Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,9 +12,7 @@
   ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~  See the License for the specific language governing permissions and
   ~  limitations under the License.
-  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
@@ -23,7 +20,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>RHOAR Getting Started - WildFly Swarm - Health Check</name>
+    <name>RHOAR Getting Started - Thorntail - Health Check</name>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -34,30 +31,31 @@
         <maven.min.version>3.3.9</maven.min.version>
         <jdk.min.version>${maven.compiler.source}</jdk.min.version>
 
-        <version.wildfly.swarm>7.1.0.redhat-77</version.wildfly.swarm>
+        <version.thorntail>2.2.0.Final-redhat-00021</version.thorntail>
         <version.resteasy>3.0.24.Final</version.resteasy>
         <version.override.jackson>2.7.7</version.override.jackson>
         <failOnMissingWebXml>false</failOnMissingWebXml>
-        <fabric8-maven-plugin.version>3.5.38</fabric8-maven-plugin.version>
+        <fabric8-maven-plugin.version>3.5.40</fabric8-maven-plugin.version>
         <fabric8.generator.from>registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift
         </fabric8.generator.from>
         <fabric8.openshift.trimImageInContainerSpec>true</fabric8.openshift.trimImageInContainerSpec>
+        <fabric8.skip.build.pom>true</fabric8.skip.build.pom>
         <maven-war-plugin.version>3.1.0</maven-war-plugin.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.wildfly.swarm</groupId>
+                <groupId>io.thorntail</groupId>
                 <artifactId>bom</artifactId>
-                <version>${version.wildfly.swarm}</version>
+                <version>${version.thorntail}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>org.wildfly.swarm</groupId>
+                <groupId>io.thorntail</groupId>
                 <artifactId>bom-certified</artifactId>
-                <version>${version.wildfly.swarm}</version>
+                <version>${version.thorntail}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -68,30 +66,24 @@
     <dependencies>
 
         <dependency>
-            <groupId>org.wildfly.swarm</groupId>
+            <groupId>io.thorntail</groupId>
             <artifactId>jaxrs</artifactId>
         </dependency>
 
-        <!-- Add monitor fraction -->
+        <!-- Add microprofile health check fraction -->
 
         <dependency>
-            <groupId>org.wildfly.swarm</groupId>
+            <groupId>io.thorntail</groupId>
             <artifactId>cdi</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.wildfly.core</groupId>
-            <artifactId>wildfly-controller-client</artifactId>
-            <version>2.2.1.Final</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.wildfly.swarm</groupId>
-                <artifactId>wildfly-swarm-plugin</artifactId>
-                <version>${version.wildfly.swarm}</version>
+                <groupId>io.thorntail</groupId>
+                <artifactId>thorntail-maven-plugin</artifactId>
+                <version>${version.thorntail}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -132,7 +124,7 @@
                         <configuration>
                             <generator>
                                 <includes>
-                                    <include>wildfly-swarm</include>
+                                    <include>thorntail-v2</include>
                                 </includes>
                                 <excludes>
                                     <exclude>webapp</exclude>
