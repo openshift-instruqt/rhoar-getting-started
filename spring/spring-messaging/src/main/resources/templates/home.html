@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Messaging Mission - Spring Boot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/wingcss/0.1.8/wing.min.css"/>
+</head>
+<body>
+
+<div class="container">
+    <h1>Messaging Mission - Spring Boot</h1>
+    <p>
+        This application demonstrates how a Spring Boot application can interact with a Message Queue through the JMS
+        protocol. This UI fetches the count of the backend service which marks the number of messages sent.
+    </p>
+
+    <div class="row">
+        <div class="col-6">
+            <h3>Count:</h3>
+            <div th:text="${count}"></div>
+        </div>
+
+        <div class="col-6">
+            <h3>Last 5 Sent:</h3>
+            <div class="col-8" th:each="message : ${messages}">
+                <div th:text="${message}"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

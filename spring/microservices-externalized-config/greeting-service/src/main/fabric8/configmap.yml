@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  labels:
+    app: spring-boot-configmap-greeting
+data:
+  application.properties: |-
+    greeting.message=Hola, you picked %s as your favorite fruit!

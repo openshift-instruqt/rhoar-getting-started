@@ -1,0 +1,57 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>MVC Mission - Spring Boot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/wingcss/0.1.8/wing.min.css"/>
+    <style>
+        input[type=number] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            -webkit-transition: .5s;
+            transition: .5s;
+            outline: 0;
+            font-family: 'Open Sans', serif;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>MVC Mission - Spring Boot</h1>
+    <p>
+        This application demonstrates how to use Spring MVC to create a web application that manages <em>fruits</em>.
+    </p>
+
+    <div class="row">
+        <div class="col-6">
+            <h3>Add a Fruit</h3>
+            <!-- TODO: View Update -->
+            <form th:action="@{/fruits}" th:object="${fruitForm}" method="post">
+                <div class="row">
+                    <div class="col-6"><input id="fruitInput" type="text" placeholder="Name" th:field="*{name}" size="60"/></div>
+                </div>
+                <input type="submit" value="Save"/>
+            </form>
+        </div>
+
+        <div class="col-6">
+            <h3>Fruit List</h3>
+            <div class="row" th:each="fruit : ${fruits}">
+                <div class="col-2" th:text="${fruit.name}"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+window.onload = function() {
+    document.getElementById("fruitInput").focus()
+}
+</script>
+</body>
+</html>
