@@ -10,20 +10,52 @@
    ~ --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>io.openshift.booster</groupId>
-    <artifactId>booster-circuit-breaker-spring-boot</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-  </parent>
-
   <artifactId>spring-boot-circuit-breaker-greeting</artifactId>
+  <groupId>io.openshift.booster</groupId>
+  <version>1.0.0-SNAPSHOT</version>
 
   <name>Spring Boot - Circuit Breaker Booster - Greeting Service</name>
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <javax.json.version>1.0.3</javax.json.version>
+
+		<maven.min.version>3.3.9</maven.min.version>
+		<postgresql.version>9.4.1212</postgresql.version>
+		<openjdk18-openshift.version>1.3</openjdk18-openshift.version>
+
+		<spring-boot.version>1.5.16.RELEASE</spring-boot.version>
+		<spring-boot-bom.version>1.5.16.SP1-redhat-00001</spring-boot-bom.version>
+		<maven-surefire-plugin.version>2.20</maven-surefire-plugin.version>
+		<fabric8-maven-plugin.version>3.5.40</fabric8-maven-plugin.version>
+		<fabric8.openshift.trimImageInContainerSpec>true</fabric8.openshift.trimImageInContainerSpec>
+		<fabric8.skip.build.pom>true</fabric8.skip.build.pom>
+		<fabric8.generator.from>
+			registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:${openjdk18-openshift.version}
+		</fabric8.generator.from>
+  	    <rest-assured.version>3.1.0</rest-assured.version>
+    	<arquillian.version>1.4.0.Final</arquillian.version>
+  		  <awaitility.version>3.1.0</awaitility.version>
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>me.snowdrop</groupId>
+				<artifactId>spring-boot-bom</artifactId>
+				<version>${spring-boot-bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
   <dependencies>
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+      <version>1.4.5.RELEASE</version>
     </dependency>
 
     <dependency>
@@ -41,4 +73,47 @@
       <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
   </dependencies>
+    <build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+       			<version>${spring-boot.version}</version>
+				<configuration>
+					<profiles>
+						<profile>local</profile>
+					</profiles>
+					<classifier>exec</classifier>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>openshift</id>
+			<dependencies>
+			</dependencies>
+
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>io.fabric8</groupId>
+						<artifactId>fabric8-maven-plugin</artifactId>
+						<version>${fabric8-maven-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>fmp</id>
+								<goals>
+									<goal>resource</goal>
+									<goal>build</goal>
+								</goals>
+							</execution>
+						</executions>
+          			</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 </project>

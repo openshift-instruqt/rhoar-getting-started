@@ -4,6 +4,8 @@
 /out/
 .idea_modules/
 
+# Gradle
+.gradle/
 ## File-based project format:
 *.iws
 
@@ -114,3 +116,4 @@ logs/
 tmp/
 .vscode/
 node_modules/
+
