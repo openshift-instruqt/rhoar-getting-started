@@ -45,7 +45,7 @@ public class DatabaseTest {
         Fruit orange = fruitRepository.findOne(orangeId);
         assertNotNull(orange);
 
-        fruitRepository.delete(orange);
+        fruitRepository.delete(orangeId);
         assertNull(fruitRepository.findOne(orangeId));
     }
 
