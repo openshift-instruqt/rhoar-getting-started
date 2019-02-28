@@ -3,6 +3,7 @@ package com.example.service;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class FruitRepository {
@@ -15,11 +16,11 @@ public class FruitRepository {
         return fruit;
     }
 
-    public Fruit findOne(Long id) {
+    public Optional<Fruit> findById(Long id) {
         return null;
     }
 
-    public void delete(Long id) {
+    public void deleteById(Long id) {
 
     }
 }
