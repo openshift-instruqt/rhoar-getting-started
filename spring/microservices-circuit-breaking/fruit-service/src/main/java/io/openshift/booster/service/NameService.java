@@ -35,8 +35,8 @@ public class NameService {
     private final RestTemplate restTemplate = new RestTemplate();
 
     @HystrixCommand(commandKey = "NameService", fallbackMethod = "getFallbackName", commandProperties = {
-            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000")
-    })
+        @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000")
+})
 
     public String getName() {
         return restTemplate.getForObject(nameHost + "/api/name", String.class);

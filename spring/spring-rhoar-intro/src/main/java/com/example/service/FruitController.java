@@ -56,7 +56,7 @@ public class FruitController {
     public Fruit get(@PathVariable("id") Integer id) {
         verifyFruitExists(id);
 
-        return repository.findOne(id);
+        return repository.findById(id).orElse(null);
     }
 
     @ResponseBody
@@ -75,11 +75,11 @@ public class FruitController {
     public void delete(@PathVariable("id") Integer id) {
         verifyFruitExists(id);
 
-        repository.delete(id);
+        repository.deleteById(id);
     }
 
     private void verifyFruitExists(Integer id) {
-        if (!repository.exists(id)) {
+        if (!repository.existsById(id)) {
             throw new RuntimeException(String.format("Fruit with id=%d was not found", id));
         }
     }

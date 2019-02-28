@@ -47,7 +47,6 @@ public class FruitController {
      *
      * @return Fruit string.
      */
-
     @RequestMapping("/api/greeting")
     public Fruit getFruit() throws Exception {
         String result = String.format("You've picked %s!", nameService.getName());

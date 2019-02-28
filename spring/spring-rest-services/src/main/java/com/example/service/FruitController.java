@@ -18,7 +18,7 @@ public class FruitController {
 
     @GetMapping("/{id}")
     public Fruit getFruit(@PathVariable("id") Long id) {
-        return repository.findOne(id);
+        return repository.findById(id).orElse(null);
     }
     @PostMapping
     public Fruit createFruit(@RequestBody Fruit fruit) {
@@ -31,7 +31,7 @@ public class FruitController {
     }
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Long id) {
-        repository.delete(id);
+        repository.deleteById(id);
     }
 
 }
