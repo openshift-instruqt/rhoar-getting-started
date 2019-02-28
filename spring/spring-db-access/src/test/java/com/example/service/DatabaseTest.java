@@ -24,33 +24,33 @@ public class DatabaseTest {
 
     @Test
     public void getOne() {
-        assertNotNull(fruitRepository.findOne(1L));
+        assertNotNull(fruitRepository.findById(1L).orElse(null));
     }
 
     @Test
     public void updateAFruit() {
-        Fruit apple = fruitRepository.findOne(2L);
+        Fruit apple = fruitRepository.findById(2L).orElse(null);
         assertNotNull(apple);
         assertEquals("Apple", apple.getName());
 
         apple.setName("Green Apple");
         fruitRepository.save(apple);
 
-        assertEquals("Green Apple", fruitRepository.findOne(2L).getName());
+        assertEquals("Green Apple", fruitRepository.findById(2L).orElse(null).getName());
     }
 
     @Test
     public void createAndDeleteAFruit() {
         Long orangeId = fruitRepository.save(new Fruit("Orange")).getId();
-        Fruit orange = fruitRepository.findOne(orangeId);
+        Fruit orange = fruitRepository.findById(orangeId).orElse(null);
         assertNotNull(orange);
 
-        fruitRepository.delete(orangeId);
-        assertNull(fruitRepository.findOne(orangeId));
+        fruitRepository.deleteById(orangeId);
+        assertNull(fruitRepository.findById(orangeId).orElse(null));
     }
 
     @Test
     public void getWrongId() {
-        assertNull(fruitRepository.findOne(9999L));
+        assertNull(fruitRepository.findById(9999L).orElse(null));
     }
 }
