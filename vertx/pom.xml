@@ -21,12 +21,12 @@
     <jdk.min.version>${maven.compiler.source}</jdk.min.version>
 
 
-    <vertx.version>3.5.4.redhat-00002</vertx.version>
+    <vertx.version>3.6.3.redhat-00009</vertx.version>
     <vertx-maven-plugin.version>1.0.18</vertx-maven-plugin.version>
     <vertx.verticle>com.example.HttpApplication</vertx.verticle>
 
     <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
-    <fabric8-maven-plugin.version>3.5.41</fabric8-maven-plugin.version>
+    <fabric8-maven-plugin.version>3.5.42</fabric8-maven-plugin.version>
 
     <fabric8.generator.from>registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift</fabric8.generator.from>
   </properties>
@@ -73,13 +73,13 @@
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
-      <version>3.8.0</version>
+      <version>3.12.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
-      <version>3.0.5</version>
+      <version>3.3.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
