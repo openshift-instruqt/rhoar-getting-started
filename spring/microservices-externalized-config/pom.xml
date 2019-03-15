@@ -15,11 +15,6 @@
  limitations under the License.
 --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>io.openshift.booster</groupId>
-    <artifactId>spring-boot-booster-parent</artifactId>
-    <version>1.5.10-15</version>
-  </parent>
 
   <artifactId>booster-configmap-spring-boot</artifactId>
 
@@ -32,6 +27,5 @@
 
   <modules>
     <module>greeting-service</module>
-    <!-- <module>tests</module> -->
   </modules>
 </project>

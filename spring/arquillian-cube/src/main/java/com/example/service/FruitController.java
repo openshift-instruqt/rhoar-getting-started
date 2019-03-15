@@ -28,6 +28,6 @@ public class FruitController {
 	
 	 @GetMapping("/{id}")
 	    public Fruit getFruit(@PathVariable("id") Long id) {
-	        return repository.findOne(id);
+	        return repository.findById(id).orElse(null);
 	    }
 }
