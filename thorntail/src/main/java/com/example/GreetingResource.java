@@ -26,12 +26,11 @@ public class GreetingResource {
     @GET
     @Path("/greeting")
     @Produces("application/json")
-    public Greeting greeting(@QueryParam("name") String name) {
+    public Greeting greeting(@QueryParam("name") @DefaultValue("World") String name) {
         if (!ApplicationConfig.IS_ALIVE.get()) {
             throw new WebApplicationException(Response.Status.SERVICE_UNAVAILABLE);
         }
-        String suffix = name != null ? name : "World";
-        return new Greeting(String.format(template, suffix));
+        return new Greeting(String.format(template, name));
     }
 
     @GET
