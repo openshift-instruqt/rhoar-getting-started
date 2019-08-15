@@ -31,11 +31,11 @@
         <maven.min.version>3.3.9</maven.min.version>
         <jdk.min.version>${maven.compiler.source}</jdk.min.version>
 
-        <version.thorntail>2.2.0.Final-redhat-00021</version.thorntail>
+        <version.thorntail>2.4.0.Final-redhat-00013</version.thorntail>
         <version.resteasy>3.0.24.Final</version.resteasy>
         <version.override.jackson>2.7.7</version.override.jackson>
         <failOnMissingWebXml>false</failOnMissingWebXml>
-        <fabric8-maven-plugin.version>3.5.40</fabric8-maven-plugin.version>
+        <fabric8-maven-plugin.version>4.1.0</fabric8-maven-plugin.version>
         <fabric8.generator.from>registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift
         </fabric8.generator.from>
         <fabric8.openshift.trimImageInContainerSpec>true</fabric8.openshift.trimImageInContainerSpec>
@@ -70,12 +70,10 @@
             <artifactId>jaxrs</artifactId>
         </dependency>
 
-        <!-- Add microprofile health check fraction -->
-
-    <dependency>
-      <groupId>io.thorntail</groupId>
-      <artifactId>microprofile-health</artifactId>
-    </dependency>
+        <dependency>
+            <groupId>io.thorntail</groupId>
+            <artifactId>microprofile-health</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>io.thorntail</groupId>
@@ -126,16 +124,6 @@
                                 </goals>
                             </execution>
                         </executions>
-                        <configuration>
-                            <generator>
-                                <includes>
-                                    <include>thorntail-v2</include>
-                                </includes>
-                                <excludes>
-                                    <exclude>webapp</exclude>
-                                </excludes>
-                            </generator>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>
