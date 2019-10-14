@@ -31,7 +31,7 @@
         <maven.min.version>3.3.9</maven.min.version>
         <jdk.min.version>${maven.compiler.source}</jdk.min.version>
 
-        <version.thorntail>2.4.0.Final-redhat-00013</version.thorntail>
+        <version.thorntail>2.5.0.Final-redhat-00016</version.thorntail>
         <version.resteasy>3.0.24.Final</version.resteasy>
         <version.override.jackson>2.7.7</version.override.jackson>
         <failOnMissingWebXml>false</failOnMissingWebXml>
