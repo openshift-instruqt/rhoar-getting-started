@@ -14,7 +14,7 @@
     "ci": "npm run lint && npm run coveralls",
     "dependencyCheck": "szero . --ci",
     "release": "standard-version -a",
-    "openshift": "nodeshift --strictSSL=false --dockerImage=registry.access.redhat.com/rhoar-nodejs/nodejs-8 --tryServiceAccount=false --configLocation /openshift.local.config/master/admin.kubeconfig",
+    "openshift": "nodeshift --imageTag=12.x --strictSSL=false --tryServiceAccount=false --configLocation /openshift.local.config/master/admin.kubeconfig",
     "start": "node ."
   },
   "main": "./bin/www",
@@ -43,22 +43,22 @@
   "homepage": "https://developers.redhat.com/rhoar",
   "devDependencies": {
     "coveralls": "^3.0.1",
-    "nodeshift": "~1.7.0",
+    "nodeshift": "~3.1.1",
     "nsp": "~3.2.1",
-    "nyc": "~11.7.1",
-    "proxyquire": "^2.0.0",
-    "standard-version": "^4.3.0",
-    "supertest": "^3.0.0",
+    "nyc": "~14.1.1",
+    "proxyquire": "^2.1.3",
+    "standard-version": "^6.0.1",
+    "supertest": "~4.0.2",
     "szero": "^1.0.0",
-    "tap-spec": "~4.1.1",
-    "tape": "~4.9.0",
-    "xo": "~0.20.3"
+    "tap-spec": "~5.0.0",
+    "tape": "~4.11.0",
+    "xo": "~0.24.0"
   },
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "debug": "^3.1.0",
-    "express": "4.16.0",
+    "body-parser": "~1.19.0",
+    "debug": "^4.0.1",
+    "express": "4.17.1",
     "js-yaml": "^3.13.1",
-    "kube-probe": "^0.3.0"
+    "kube-probe": "^0.3.2"
   }
 }
