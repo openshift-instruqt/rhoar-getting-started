@@ -14,7 +14,7 @@
     "ci": "npm run lint && npm run coveralls",
     "dependencyCheck": "szero . --ci",
     "release": "standard-version -a",
-    "openshift": "nodeshift --imageTag=12.x --strictSSL=false --tryServiceAccount=false --configLocation /openshift.local.config/master/admin.kubeconfig",
+    "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-12",
     "start": "node ."
   },
   "main": "./bin/www",
@@ -43,7 +43,7 @@
   "homepage": "https://developers.redhat.com/rhoar",
   "devDependencies": {
     "coveralls": "^3.0.1",
-    "nodeshift": "~3.1.1",
+    "nodeshift": "~6.0.2",
     "nsp": "~3.2.1",
     "nyc": "~14.1.1",
     "proxyquire": "^2.1.3",
