@@ -38,7 +38,7 @@
         <dependency>
             <groupId>org.infinispan</groupId>
             <artifactId>infinispan-cloud</artifactId>
-            <version>9.2.3.Final</version>
+            <version>9.4.19.Final</version>
         </dependency>
         <dependency>
             <groupId>org.jgroups.kubernetes</groupId>
