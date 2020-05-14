@@ -114,7 +114,7 @@
         <dependency>
             <groupId>org.infinispan</groupId>
             <artifactId>infinispan-cloud</artifactId>
-            <version>9.1.1.Final</version>
+            <version>9.4.19.Final</version>
         </dependency>
         <dependency>
             <groupId>org.jgroups.kubernetes</groupId>
