@@ -21,12 +21,12 @@
     <jdk.min.version>${maven.compiler.source}</jdk.min.version>
 
 
-    <vertx.version>3.8.1.redhat-00005</vertx.version>
-    <vertx-maven-plugin.version>1.0.20</vertx-maven-plugin.version>
+    <vertx.version>3.9.0.redhat-00008</vertx.version>
+    <vertx-maven-plugin.version>1.0.22</vertx-maven-plugin.version>
     <vertx.verticle>com.example.HttpApplication</vertx.verticle>
 
     <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
-    <fabric8-maven-plugin.version>4.1.0</fabric8-maven-plugin.version>
+    <fabric8-maven-plugin.version>4.4.1</fabric8-maven-plugin.version>
 
     <fabric8.generator.from>registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift</fabric8.generator.from>
   </properties>
@@ -67,19 +67,19 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.12</version>
+      <version>4.13</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
-      <version>3.12.2</version>
+      <version>3.15.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
-      <version>3.3.0</version>
+      <version>4.3.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -150,6 +150,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-failsafe-plugin</artifactId>
+            <version>2.22.2</version>
             <configuration>
               <systemPropertyVariables>
                 <app.name>${project.artifactId}</app.name>
@@ -171,26 +172,27 @@
 
   <repositories>
     <repository>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>jboss-enterprise-maven-repository</id>
-      <url>https://maven.repository.redhat.com/earlyaccess/</url>
+      <id>redhat-ga</id>
+      <name>Red Hat GA Repository</name>
+      <url>https://maven.repository.redhat.com/ga/</url>
+    </repository>
+    <repository>
+      <id>redhat-early-access</id>
+      <name>Red Hat Early Access Repository</name>
+      <url>https://maven.repository.redhat.com/earlyaccess/all/</url>
     </repository>
   </repositories>
+
   <pluginRepositories>
     <pluginRepository>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>jboss-enterprise-maven-repository</id>
-      <url>https://maven.repository.redhat.com/earlyaccess/</url>
+      <id>redhat-ga</id>
+      <name>Red Hat GA Repository</name>
+      <url>https://maven.repository.redhat.com/ga/</url>
+    </pluginRepository>
+    <pluginRepository>
+      <id>redhat-early-access</id>
+      <name>Red Hat Early Access Repository</name>
+      <url>https://maven.repository.redhat.com/earlyaccess/all/</url>
     </pluginRepository>
   </pluginRepositories>
 </project>
