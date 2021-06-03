@@ -1,0 +1,44 @@
+body {
+    padding-top: 5rem;
+}
+
+.chat-window {
+    min-height: 150px;
+    height: 60vh;
+    overflow-y: scroll;
+    margin-bottom: 20px;
+}
+
+.flag-icon-background {
+    background-size: contain;
+    background-position: 50%;
+    background-repeat: no-repeat;
+}
+.flag-icon {
+    background-size: contain;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    position: relative;
+    display: inline-block;
+    width: 1.33333333em;
+    line-height: 1em;
+}
+.flag-icon:before {
+    content: "\00a0";
+}
+
+.flag-icon-fr {
+    background-image: url(./flags/fr.svg);
+}
+
+.flag-icon-en {
+    background-image: url(./flags/en.svg);
+}
+
+.flag-icon-us {
+    background-image: url(./flags/us.svg);
+}
+
+.flag-icon-se {
+    background-image: url(./flags/se.svg);
+}
