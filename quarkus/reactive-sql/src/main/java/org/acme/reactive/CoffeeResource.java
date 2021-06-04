@@ -17,7 +17,6 @@
 package org.acme.reactive;
 
 import java.net.URI;
-import java.util.concurrent.CompletionStage;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -30,7 +29,9 @@ import javax.ws.rs.core.Response.Status;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
-import io.vertx.axle.pgclient.PgPool;
+import io.smallrye.mutiny.Multi;
+import io.smallrye.mutiny.Uni;
+import io.vertx.mutiny.pgclient.PgPool;
 
 @Path("coffee")
 @Produces(MediaType.APPLICATION_JSON)
@@ -52,21 +53,15 @@ public class CoffeeResource {
     }
 
     private void initdb() {
-            
-            // TODO initdb
+
+        // TODO initdb
 
     }
 
-
     // TODO GET
-    
-    
+
     // TODO POST
 
-    
     // TODO DELETE
 
-
-
- 
 }
