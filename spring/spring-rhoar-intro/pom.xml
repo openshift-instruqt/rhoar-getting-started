@@ -20,7 +20,7 @@
 
   <groupId>com.example</groupId>
   <artifactId>fruits</artifactId>
-  <version>15-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
 
   <name>Simple Fruits Application</name>
   <description>Spring Boot - CRUD Booster</description>
