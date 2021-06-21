@@ -14,15 +14,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.openshift.booster;
+package com.example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+
+import com.example.service.MessageProperties;
 
 @SpringBootApplication
-public class BoosterApplication {
+@EnableConfigurationProperties(MessageProperties.class)
+public class ExternalizedConfigurationExample {
 
     public static void main(String[] args) {
-        SpringApplication.run(BoosterApplication.class, args);
+        SpringApplication.run(ExternalizedConfigurationExample.class, args);
     }
 }
