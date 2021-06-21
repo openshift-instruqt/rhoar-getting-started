@@ -30,7 +30,6 @@
     <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-  <postgresql.version>42.2.5.redhat-00001</postgresql.version>
     <maven.min.version>3.3.9</maven.min.version>
     <spring-boot.version>2.3.6.RELEASE</spring-boot.version>
     <spring-boot-bom.version>2.3.6.Final-redhat-00001</spring-boot-bom.version>
