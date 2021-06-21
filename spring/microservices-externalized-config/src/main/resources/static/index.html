@@ -45,8 +45,7 @@
             <pre><code>greeting.message: Bonjour, you picked a %s from a ConfigMap!</code></pre>
         </div>
         <div>
-            <p>And reload your application</p>
-            <pre><code>oc rollout latest dc/spring-boot-configmap-greeting &amp;&amp; oc rollout status -w dc/spring-boot-configmap-greeting</code></pre>
+            <p>And re-try the request. The new message should be automatically picked up</p>
         </div>
     </div>
 </div>
