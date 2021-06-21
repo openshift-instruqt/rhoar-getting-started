@@ -14,26 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.openshift.booster.service;
+package com.example.service;
 
-import java.util.Objects;
+public class Message {
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+    private final String content;
 
-@RestController
-public class FruitController {
+    public Message() {
+        this.content = null;
+    }
 
-	@Autowired
-	private MessageProperties properties;
+    public Message(String content) {
+        this.content = content;
+    }
 
-	@RequestMapping("/api/greeting")
-	public Message greeting(@RequestParam(value = "name", defaultValue = "Banana") String name) {
-		Objects.requireNonNull(properties.getMessage(), "Greeting message was not set in the properties");
-
-		String message = String.format(properties.getMessage(), name);
-		return new Message(message);
-	}
+    public String getContent() {
+        return this.content;
+    }
 }
