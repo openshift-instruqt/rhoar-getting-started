@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2017 Red Hat, Inc, and individual contributors.
+ * Copyright 2021 Red Hat, Inc, and individual contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,24 +14,26 @@
  * limitations under the License.
  */
 
-package io.openshift.booster.service;
+package com.example.service;
+
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
-@Component
-@ConfigurationProperties(prefix = "greeting")
+@ConfigurationProperties("greeting")
+@Validated
 public class MessageProperties {
 
     /**
      * This message has to be set in the application.properties file. If application is executed locally, "local" profile is
      * expected. On OpenShift, this property is set by a ConfigMap.
      */
-    private String message = null;
+    @NotBlank(message = "Greeting message was not set in the properties")
+    private String message;
 
     public String getMessage() {
-        return message;
+        return this.message;
     }
 
     public void setMessage(String message) {

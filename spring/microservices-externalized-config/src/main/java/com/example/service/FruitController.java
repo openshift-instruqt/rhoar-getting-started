@@ -14,21 +14,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.openshift.booster.service;
+package com.example.service;
 
-public class Message {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-    private final String content;
+@RestController
+@RequestMapping("/api")
+public class FruitController {
+	@Autowired
+	private MessageProperties properties;
 
-    public Message() {
-        this.content = null;
-    }
-
-    public Message(String content) {
-        this.content = content;
-    }
-
-    public String getContent() {
-        return content;
-    }
+	@GetMapping(path = "/greeting", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Message greeting(@RequestParam(value = "name", defaultValue = "Banana") String name) {
+		String message = String.format(this.properties.getMessage(), name);
+		return new Message(message);
+	}
 }

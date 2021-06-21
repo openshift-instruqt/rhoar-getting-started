@@ -38,15 +38,14 @@
         <h2>Reconfigure OpenShift ConfigMap</h2>
         <div>
             <p>Open ConfigMap editor in your terminal:</p>
-            <pre><code>oc edit configmap &lt;CONFIGMAP_NAME&gt;</code></pre>
+            <pre><code>oc edit configmap spring-boot-configmap-greeting</code></pre>
         </div>
         <div>
             <p>Replace the greeting.message</p>
-            <pre><code>greeting.message: Bonjour %s from a ConfigMap!</code></pre>
+            <pre><code>greeting.message: Bonjour, you picked a %s from a ConfigMap!</code></pre>
         </div>
         <div>
-            <p>And reload your application</p>
-            <pre><code>oc rollout latest dc/&lt;DEPLOYMENT_NAME&gt;</code></pre>
+            <p>And re-try the request. The new message should be automatically picked up</p>
         </div>
     </div>
 </div>
