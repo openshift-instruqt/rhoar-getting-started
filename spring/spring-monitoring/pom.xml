@@ -36,7 +36,6 @@
 
 	<dependencies>
 		<!-- TODO: Add Actuator dependency here -->
-		<!-- TODO: Add jaeger dependency here -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
