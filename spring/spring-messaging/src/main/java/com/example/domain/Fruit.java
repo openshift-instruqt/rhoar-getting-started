@@ -1,22 +1,16 @@
-package com.example.service;
+package com.example.domain;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Fruit {
-
     private String name;
-
-    private static ArrayList<String> fruits = new ArrayList() {{
-        add("Apple");
-        add("Banana");
-        add("Watermelon");
-    }};
+    private static final List<String> FRUITS = List.of("Apple", "Banana", "Watermelon");
 
     private static String getRandomFruit() {
         Random rand = new Random();
-        int index = rand.nextInt(fruits.size());
-        return fruits.get(index);
+        int index = rand.nextInt(FRUITS.size());
+        return FRUITS.get(index);
     }
 
     public Fruit() {
@@ -28,7 +22,7 @@ public class Fruit {
     }
 
     public String getFruit() {
-        return name;
+        return this.name;
     }
 
     public void setFruit(String name) {
@@ -37,6 +31,6 @@ public class Fruit {
 
     @Override
     public String toString() {
-        return "Fruit{ Name ='" + name + '\'' + " }";
+        return "Fruit{ Name ='" + this.name + '\'' + " }";
     }
 }
