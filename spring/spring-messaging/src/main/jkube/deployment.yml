@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: ${project.artifactId}
+  labels:
+    app.openshift.io/runtime: spring-boot
+  annotations:
+    app.openshift.io/connects-to: spring-amq-ss
+spec:
+  template:
+    spec:
+      containers:
+        - env:
+          - name: AMQ_HOST
+            value: spring-amq-hdls-svc
+          - name: AMQ_PORT
+            value: 61616
+          - name: SPRING_PROFILES_ACTIVE
+            value: openshift
