@@ -15,7 +15,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 public class Person extends PanacheEntity {
     // the person's name
     public String name;
-    
+
     // the person's birthdate
     public LocalDate birth;
 
@@ -26,12 +26,12 @@ public class Person extends PanacheEntity {
 
     public static List<Person> findByColor(EyeColor color) {
         return list("eyes", color);
-	}
+    }
 
-	public static List<Person> getBeforeYear(int year) {
+    public static List<Person> getBeforeYear(int year) {
         return Person.<Person>streamAll()
         .filter(p -> p.birth.getYear() <= year)
         .collect(Collectors.toList());
-	}
-}
+    }
 
+}
