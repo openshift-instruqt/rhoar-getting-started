@@ -1,6 +1,6 @@
 package org.acme.people.stream;
 
-import io.smallrye.reactive.messaging.annotations.Stream;
+import org.eclipse.microprofile.reactive.messaging.Channel;
 
 import org.reactivestreams.Publisher;
 import javax.inject.Inject;
@@ -16,12 +16,12 @@ import javax.ws.rs.core.MediaType;
 public class NameResource {
 
     @Inject
-    @Stream("my-data-stream") Publisher<String> names;  
+    @Channel("my-data-stream") Publisher<String> names;
 
     @GET
     @Path("/stream")
-    @Produces(MediaType.SERVER_SENT_EVENTS)              
-    public Publisher<String> stream() {                  
+    @Produces(MediaType.SERVER_SENT_EVENTS)
+    public Publisher<String> stream() {
         return names;
     }
 }
