@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.transaction.Transactional;
 import javax.ws.rs.GET;
@@ -18,12 +17,13 @@ import org.acme.person.model.DataTable;
 import org.acme.person.model.EyeColor;
 import org.acme.person.model.Person;
 
+import io.smallrye.common.annotation.Blocking;
 import io.quarkus.panache.common.Parameters;
 import io.quarkus.runtime.StartupEvent;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @Path("/person")
-@ApplicationScoped
+@Blocking
 public class PersonResource {
 
     @GET
@@ -45,7 +45,7 @@ public class PersonResource {
     public List<Person> getBeforeYear(@PathParam(value = "year") int year) {
         return Person.getBeforeYear(year);
     }
-    
+
     @GET
     @Path("/datatable")
     @Produces(MediaType.APPLICATION_JSON)
@@ -60,7 +60,7 @@ public class PersonResource {
             result.setDraw(draw);
 
             PanacheQuery<Person> filteredPeople;
-            
+
             if (searchVal != null && !searchVal.isEmpty()) {
                 filteredPeople = Person.<Person>find("name like :search",
                   Parameters.with("search", "%" + searchVal + "%"));
@@ -70,12 +70,12 @@ public class PersonResource {
 
             int page_number = start / length;
             filteredPeople.page(page_number, length);
-            
+
             result.setRecordsFiltered(filteredPeople.count());
             result.setData(filteredPeople.list());
             result.setRecordsTotal(Person.count());
-            
-            return result;  
+
+            return result;
 
     }
 
@@ -94,4 +94,3 @@ public class PersonResource {
     }
 
 }
-
