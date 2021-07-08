@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quarkus Reactive SQL Programming</title>
+    <style>
+        h1, h2, h3, h4, h5, h6 {
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2rem
+        }
+
+        h3 {
+            font-size: 1.75rem
+        }
+
+        h4 {
+            font-size: 1.5rem
+        }
+
+        h5 {
+            font-size: 1.25rem
+        }
+
+        h6 {
+            font-size: 1rem
+        }
+
+        .lead {
+            font-weight: 300;
+            font-size: 2rem;
+        }
+
+        .banner {
+            font-size: 2.7rem;
+            margin: 0;
+            padding: 2rem 1rem;
+            background-color: #00A1E2;
+            color: white;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+
+        code {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 87.5%;
+            color: #e83e8c;
+            word-break: break-word;
+        }
+
+        .left-column {
+            padding: .75rem;
+            max-width: 75%;
+            min-width: 55%;
+        }
+
+        .right-column {
+            padding: .75rem;
+            max-width: 25%;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+        }
+
+        li {
+            margin: 0.75rem;
+        }
+
+        .right-section {
+            margin-left: 1rem;
+            padding-left: 0.5rem;
+        }
+
+        .right-section h3 {
+            padding-top: 0;
+            font-weight: 200;
+        }
+
+        .right-section ul {
+            border-left: 0.3rem solid #00A1E2;
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+    </style>
+
+    <meta charset="utf-8"/>
+    <title>Reactive Postgres Client - Quarkus</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type="application/javascript" src="coffee.js"></script>
+
+</head>
+<body>
+
+<div class="banner lead">
+    Quarkus Reactive SQL Coffee Shop 
+</div>
+
+<div class="container">
+    <div class="left-column">
+        <div id="all-coffee"></div>
+
+        <h2>Add your Coffee</h2>
+        <input id="coffee-name" type="text">
+        <button id="create-coffee-button" type="button">Create</button>
+        <div id="create-coffee"></div>
+    </div>
+    <div class="right-column">
+        <div class="right-section">
+            <h3>Application</h3>
+            <ul>
+                <li>GroupId: org.acme.reactive</li>
+                <li>ArtifactId: reactive-sql</li>
+            </ul>
+        </div>
+        <div class="right-section">
+            <h3>Next steps</h3>
+            <ul>
+                <li><a href="https://quarkus.io/guides/maven-tooling.html" target="_blank">Setup your IDE</a></li>
+                <li><a href="https://quarkus.io/guides/getting-started.html" target="_blank">Getting started</a></li>
+                <li><a href="https://quarkus.io" target="_blank">Quarkus Web Site</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
