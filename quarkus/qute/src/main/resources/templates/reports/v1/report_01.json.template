@@ -1,0 +1,8 @@
+\{
+    "time": "{now}",
+    "samples": [
+      {#for sample in samples}
+      \{"name": "{sample.name ?: 'Unknown'}","data": "{#if sample.valid}{sample.data}{#else}--Invalid--{/if}"}{#if count < samples.size },{/if}
+      {/for}
+    ]
+  }
