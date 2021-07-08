@@ -1,18 +1,9 @@
 package com.example.service;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.Spliterator;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
-import com.example.service.Fruit;
-import com.example.service.FruitRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,54 +11,46 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequestMapping(value = "/api/fruits")
+@RestController
+@RequestMapping("/api/fruits")
 public class FruitController {
 
     private final FruitRepository repository;
 
-    @Autowired
     public FruitController(FruitRepository repository) {
         this.repository = repository;
     }
 
-    @ResponseBody
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Fruit> getAll() {
-        return StreamSupport
-                .stream(repository.findAll().spliterator(), false)
-                .collect(Collectors.toList());
+    public Iterable<Fruit> getAll() {
+        return this.repository.findAll();
     }
 
-    @ResponseBody
-    @ResponseStatus(HttpStatus.CREATED)
+   @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Fruit post(@RequestBody(required = false) Fruit fruit) {
         verifyCorrectPayload(fruit);
 
-        return repository.save(fruit);
+        return this.repository.save(fruit);
     }
 
-    @ResponseBody
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Fruit get(@PathVariable("id") Integer id) {
         verifyFruitExists(id);
 
-        return repository.findById(id).orElse(null);
+        return this.repository.findById(id).orElse(null);
     }
 
-    @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Fruit put(@PathVariable("id") Integer id, @RequestBody(required = false) Fruit fruit) {
         verifyFruitExists(id);
         verifyCorrectPayload(fruit);
 
         fruit.setId(id);
-        return repository.save(fruit);
+        return this.repository.save(fruit);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -75,11 +58,11 @@ public class FruitController {
     public void delete(@PathVariable("id") Integer id) {
         verifyFruitExists(id);
 
-        repository.deleteById(id);
+        this.repository.deleteById(id);
     }
 
     private void verifyFruitExists(Integer id) {
-        if (!repository.existsById(id)) {
+        if (!this.repository.existsById(id)) {
             throw new RuntimeException(String.format("Fruit with id=%d was not found", id));
         }
     }
