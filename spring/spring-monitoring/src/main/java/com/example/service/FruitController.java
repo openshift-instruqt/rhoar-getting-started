@@ -10,7 +10,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
-import io.opentracing.Tracer;
+// Add trace dependecny here
 
 @Controller
 @RequestMapping("/fruits")
@@ -18,14 +18,13 @@ public class FruitController {
 
     private List<Fruit> fruits = new ArrayList<>();
 
-    @Autowired
-    private Tracer tracer;
+    // Add tracer here
 
 
     @GetMapping
     public String home(Model model) {
 
-        tracer.buildSpan("Calling home page");
+        // TODO: Add tracing here
 
         model.addAttribute("fruits", fruits);     // For the List view
         model.addAttribute("fruitForm", new Fruit()); // For the Form
