@@ -1,0 +1,62 @@
+apiVersion: 1.0.0
+metadata:
+  generateName: quarkus-spring-
+projects:
+  - name: rhoar-getting-started
+    source:
+      type: git
+      location: https://github.com/openshift-katacoda/rhoar-getting-started.git
+      branch: solution
+      sparseCheckoutDir: quarkus/spring
+components:
+  - id: redhat/quarkus-java11/latest
+    type: chePlugin
+  - id: redhat/vscode-yaml/latest
+    type: chePlugin
+  - id: redhat/vscode-xml/latest
+    type: chePlugin
+  - mountSources: true
+    env:
+      - name: JAVA_OPTS
+        value: '-XX:+UseParallelGC -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Djava.security.egd=file:/dev/./urandom -Duser.home=/home/jboss'
+      - name: MAVEN_OPTS
+        value: $(JAVA_OPTS)
+    endpoints:
+      - name: http
+        port: 8080
+    memoryLimit: 1536Mi
+    type: dockerimage
+    volumes:
+      - name: m2
+        containerPath: /home/jboss/.m2
+    alias: app
+    image: registry.redhat.io/codeready-workspaces/plugin-java11-rhel8:latest
+commands:
+  - name: 1. Package the application
+    actions:
+      - type: exec
+        workdir: '${CHE_PROJECTS_ROOT}/rhoar-getting-started/quarkus/spring'
+        command: mvn clean package
+        component: app
+  - name: 2. Start Quarkus in devmode (hot deploy + debug)
+    actions:
+      - type: exec
+        workdir: '${CHE_PROJECTS_ROOT}/rhoar-getting-started/quarkus/spring'
+        command: mvn compile quarkus:dev -Dquarkus.http.host=0.0.0.0
+        component: app
+  - name: Remote debug
+    actions:
+      - type: vscode-launch
+        referenceContent: |
+          {
+            "version": "0.2.0",
+            "configurations": [
+              {
+                "type": "java",
+                "request": "attach",
+                "name": "Attach to Remote App",
+                "hostName": "localhost",
+                "port": 5005
+              }
+            ]
+          }
