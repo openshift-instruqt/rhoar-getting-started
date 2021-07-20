@@ -1,0 +1,77 @@
+apiVersion: 1.0.0
+metadata:
+  generateName: spring-externalized-config-
+projects:
+  - name: rhoar-getting-started
+    source:
+      type: git
+      location: https://github.com/openshift-katacoda/rhoar-getting-started.git
+      branch: solution
+      sparseCheckoutDir: spring/microservices-externalized-config
+components:
+  - id: redhat/dependency-analytics/latest
+    type: chePlugin
+  - id: redhat/java11/latest
+    type: chePlugin
+  - id: redhat/vscode-yaml/latest
+    type: chePlugin
+  - id: redhat/vscode-xml/latest
+    type: chePlugin
+  - mountSources: true
+    endpoints:
+      - name: http
+        port: 8080
+    memoryLimit: 2048Mi
+    type: dockerimage
+    volumes:
+      - name: m2
+        containerPath: /home/jboss/.m2
+    alias: app
+    image: registry.redhat.io/codeready-workspaces/plugin-java11-rhel8:latest
+commands:
+  - name: Build
+    actions:
+      - type: exec
+        workdir: '${CHE_PROJECTS_ROOT}/rhoar-getting-started/spring/microservices-externalized-config'
+        command: mvn clean install
+        component: app
+  - name: Run application locally
+    actions:
+      - type: exec
+        workdir: '${CHE_PROJECTS_ROOT}/rhoar-getting-started/spring/microservices-externalized-config'
+        command: mvn clean spring-boot:run -DskipTests
+        component: app
+  - name: Run application locally (debug)
+    actions:
+      - type: exec
+        component: app
+        command: mvn clean spring-boot:run -DskipTests -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005"
+        workdir: '${CHE_PROJECTS_ROOT}/rhoar-getting-started/spring/microservices-externalized-config'
+  - name: Dependency analysis
+    actions:
+      - type: exec
+        workdir: '${CHE_PROJECTS_ROOT}/rhoar-getting-started/spring/microservices-externalized-config'
+        component: app
+        command: '${HOME}/stack-analysis.sh -f ${CHE_PROJECTS_ROOT}/rhoar-getting-started/spring/microservices-externalized-config/pom.xml -p ${CHE_PROJECTS_ROOT}/rhoar-getting-started/spring/microservices-externalized-config'
+  - name: Deploy to OpenShift
+    actions:
+      - type: exec
+        workdir: '/${CHE_PROJECTS_ROOT}/rhoar-getting-started/spring/microservices-externalized-config'
+        command: mvn clean oc:deploy -Popenshift -DskipTests
+        component: app
+  - name: Remote debug
+    actions:
+      - type: vscode-launch
+        referenceContent: |
+          {
+            "version": "0.2.0",
+            "configurations": [
+              {
+                "type": "java",
+                "request": "attach",
+                "name": "Attach to Remote App",
+                "hostName": "localhost",
+                "port": 5005
+              }
+            ]
+          }
