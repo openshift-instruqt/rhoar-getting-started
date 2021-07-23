@@ -9,8 +9,6 @@ projects:
       branch: solution
       sparseCheckoutDir: spring/spring-rest-services
 components:
-  - id: redhat/dependency-analytics/latest
-    type: chePlugin
   - id: redhat/java11/latest
     type: chePlugin
   - id: redhat/vscode-yaml/latest
@@ -47,12 +45,6 @@ commands:
         component: app
         command: mvn clean spring-boot:run -DskipTests -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005"
         workdir: '${CHE_PROJECTS_ROOT}/rhoar-getting-started/spring/spring-rest-services'
-  - name: Dependency analysis
-    actions:
-      - type: exec
-        workdir: '${CHE_PROJECTS_ROOT}/rhoar-getting-started/spring/spring-rest-services'
-        component: app
-        command: '${HOME}/stack-analysis.sh -f ${CHE_PROJECTS_ROOT}/rhoar-getting-started/spring/spring-rest-services/pom.xml -p ${CHE_PROJECTS_ROOT}/rhoar-getting-started/spring/spring-rest-services'
   - name: Deploy to OpenShift
     actions:
       - type: exec
